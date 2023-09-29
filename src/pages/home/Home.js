@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
+import { useTranslation } from "react-i18next";
+
 const Home = () => {
   const [brands, setBrands] = useState([]);
 
@@ -17,9 +19,11 @@ const Home = () => {
       });
   }, []);
 
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1>HOME</h1>
+      <h1>{t("home")}</h1>
       <CardGroup>
         {brands.map((brand) => (
           <Link

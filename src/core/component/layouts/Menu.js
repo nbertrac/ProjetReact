@@ -5,8 +5,16 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../contexts/AuthContext";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 const Menu = () => {
   const [user, setUser] = useContext(UserContext);
+  const { t } = useTranslation();
+
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   const logout = () => {
     setUser(undefined);
@@ -15,7 +23,7 @@ const Menu = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand>Catalogue voitures</Navbar.Brand>
+        <Navbar.Brand>{t("menuBrand")}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -45,6 +53,20 @@ const Menu = () => {
                 Se connecter
               </Link>
             )}
+            <Button
+              size="sm"
+              onClick={() => {
+                changeLanguage("en");
+              }}>
+              Eng
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => {
+                changeLanguage("fr");
+              }}>
+              Fr
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
